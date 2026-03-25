@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/START%20CODE%20(10)%202/ui/screens/artist/artist_screen.dart';
 import 'package:provider/provider.dart';
 import 'ui/screens/library/library_screen.dart';
 import 'ui/screens/settings/settings_screen.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [  LibraryScreen(), SettingsScreen()];
+  final List<Widget> _pages = [  LibraryScreen(), SettingsScreen(),ArtistScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +63,10 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.settings),
               label: 'Settings',
             ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Artist',
+              ),
           ],
         ),
       ),
