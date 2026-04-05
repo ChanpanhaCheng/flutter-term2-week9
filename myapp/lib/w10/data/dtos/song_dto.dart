@@ -5,19 +5,21 @@ class SongDto {
   static const String durationKey = 'duration'; // in ms
   static const String artistIdKey = 'artistId';
   static const String imageUrlKey = 'imageUrl';
+  static const String likeAmountKey= 'likeAmount';
 
   static Song fromJson(String id, Map<String, dynamic> json) {
     assert(json[titleKey] is String);
     assert(json[durationKey] is int);
     assert(json[artistIdKey] is String);
     assert(json[imageUrlKey] is String);
+    assert(json[likeAmountKey] is int);
 
     return Song(
       id: id,
       title: json[titleKey],
       artistId: json[artistIdKey],
       duration: Duration(milliseconds: json[durationKey]),
-      imageUrl: Uri.parse(json[imageUrlKey])
+      imageUrl: Uri.parse(json[imageUrlKey]), likeAmount: json[likeAmountKey]
     );
   }
 
@@ -27,7 +29,8 @@ class SongDto {
       titleKey: song.title,
       artistIdKey: song.artistId,
       durationKey: song.duration.inMilliseconds,
-      imageUrlKey: song.imageUrl.toString()
+      imageUrlKey: song.imageUrl.toString(),
+      likeAmountKey: song.likeAmount
     };
   }
 }

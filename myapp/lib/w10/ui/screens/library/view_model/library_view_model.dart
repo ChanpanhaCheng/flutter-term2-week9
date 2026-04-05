@@ -69,9 +69,16 @@ class LibraryViewModel extends ChangeNotifier {
     }
     notifyListeners();
   }
-
+  void increaseLike(LibraryItemData item) async {
+    try {
+      item.song.likeAmount += 1;
+      await songRepository.updateLikeAmount(item.song.id, item.song.likeAmount);
+      notifyListeners();
+    } catch (e) {
+      print('Failed to update like: $e');
+    }
+  }
   bool isSongPlaying(Song song) => playerState.currentSong == song;
-
   void start(Song song) => playerState.start(song);
   void stop(Song song) => playerState.stop();
 }

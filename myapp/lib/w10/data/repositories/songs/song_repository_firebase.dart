@@ -48,4 +48,27 @@ class SongRepositoryFirebase extends SongRepository {
   void clearCache() {
     _cachedSongs = null;
   }
+  
+  @override
+  Future<void> updateLikeAmount (String songId, int newLikeAmount) async{
+    try {
+      final Uri updateUri = Uri.https(
+        'flutterpanha-default-rtdb.asia-southeast1.firebasedatabase.app',
+        '/songs/$songId.json',
+      );
+      final http.Response response = await http.patch(
+        updateUri,
+        body: json.encode({'likeAmount': newLikeAmount}),
+      );
+      if (response.statusCode == 200) {
+        clearCache();
+      } else {
+        print("Update failed Status: ${response.statusCode} Body: ${response.body}");
+        throw Exception('Failed to update like amount: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error updating like amount: $e');
+      rethrow;
+    }
+  }
 }

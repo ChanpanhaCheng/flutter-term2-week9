@@ -26,4 +26,10 @@ class SongRepositoryMock implements SongRepository {
   void clearCache() {
 
   }
+  
+  @override
+  Future<void> updateLikeAmount(String songId, int newLikeAmount) {
+    // TODO: implement updateLikeAmount
+    throw UnimplementedError();
+  }
 }
